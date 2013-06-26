@@ -1,0 +1,22 @@
+{
+  "name": "ebook-convert",
+  "version": "0.0.1",
+  "description": "wrapper around calibre's ebook-convert command",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": "",
+  "keywords": [
+    "calibre",
+    "ebooks",
+    "epub",
+    "mobi",
+    "pdf",
+    "hmtl"
+  ],
+  "author": "seth vincent",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
