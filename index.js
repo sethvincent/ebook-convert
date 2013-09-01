@@ -11,7 +11,9 @@ function EbookConvert(options){
   var arguments = [this.source, this.target];
 
   if (options.arguments){
-    arguments = arguments.concat(options.arguments);
+    for (var i=0; i<options.arguments.length; i++){
+      arguments = arguments.concat(options.arguments[i]);
+    }
   }
 
   var ee = new EventEmitter;
@@ -22,9 +24,6 @@ function EbookConvert(options){
   });
 
   convert.on('close', function(code){
-    if (options.end){
-      options.end(code);
-    }
     ee.emit('end', code);
   });
 

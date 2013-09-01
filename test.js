@@ -3,39 +3,47 @@ var convert = require('./');
 var pdf = convert({
   source: 'test.html',
   target: 'test.pdf',
-  //arguments: ['"--authors \"seth vincent\""']
+  arguments: [
+    ['--base-font-size', '10'], 
+    ['--authors', 'Seth Vincent'],
+    ['--extra-css', 'test.css'],
+    ['--margin-top', '50'],
+    ['--margin-right', '50'],
+    ['--margin-bottom', '50'],
+    ['--margin-left', '50']
+  ]
 });
 
-pdf.on('data', function(data){
-  console.log(data.toString())
+pdf.on('end', function(){
+  console.log('did it! the pdf exists!');
 });
 
-pdf.on('end', function(status){
-  console.log('did it!', status);
-})
 
-/*
-convert({
+var mobi = convert({
   source: 'test.html',
   target: 'test.mobi',
-  end: function(){
-    console.log("mobi finished running!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  }
+  arguments: [
+    ['--base-font-size', '10'], 
+    ['--authors', 'Seth Vincent'],
+    ['--extra-css', 'test.css']
+  ]
 });
 
-convert({
-  source: 'test.html',
-  target: 'test.pdf',
-  end: function(){
-    console.log("pdf finished running!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  }
+mobi.on('end', function(){
+  console.log('did it!, the mobi exists!')
 });
 
-convert({
+
+var epub = convert({
   source: 'test.html',
   target: 'test.epub',
-  end: function(){
-    console.log("epub finished running!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  }
+  arguments: [
+    ['--base-font-size', '10'], 
+    ['--authors', 'Seth Vincent'],
+    ['--extra-css', 'test.css']
+  ]
 });
-*/
+
+epub.on('end', function(){
+  console.log('did it!, the epub exists!')
+});
