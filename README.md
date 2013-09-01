@@ -5,12 +5,18 @@
 ```
 var convert = require('ebook-convert');
 
-convert({
+var epub = convert({
   source: 'test.html',
-  target: 'test.mobi',
-  end: function(){
-    // do something after the conversion happens
-  }
+  target: 'test.epub',
+  arguments: [
+    ['--base-font-size', '10'], 
+    ['--authors', 'Seth Vincent'],
+    ['--extra-css', 'test.css']
+  ]
+});
+
+epub.on('end', function(){
+  console.log('did it!, the epub exists!')
 });
 ```
 
