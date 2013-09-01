@@ -1,12 +1,15 @@
 {
   "name": "ebook-convert",
   "version": "0.0.2",
-  "description": "wrapper around calibre's ebook-convert command",
+  "description": "node.js wrapper around calibre's ebook-convert command",
   "main": "index.js",
   "scripts": {
     "test": "test.js"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/sethvincent/ebook-convert.git"
+  },
   "keywords": [
     "calibre",
     "ebooks",
