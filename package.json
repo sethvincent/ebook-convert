@@ -1,6 +1,6 @@
 {
   "name": "ebook-convert",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "wrapper around calibre's ebook-convert command",
   "main": "index.js",
   "scripts": {
