@@ -1,5 +1,20 @@
-var convert = require('./index');
+var convert = require('./');
 
+var pdf = convert({
+  source: 'test.html',
+  target: 'test.pdf',
+  //arguments: ['"--authors \"seth vincent\""']
+});
+
+pdf.on('data', function(data){
+  console.log(data.toString())
+});
+
+pdf.on('end', function(status){
+  console.log('did it!', status);
+})
+
+/*
 convert({
   source: 'test.html',
   target: 'test.mobi',
@@ -23,3 +38,4 @@ convert({
     console.log("epub finished running!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   }
 });
+*/
