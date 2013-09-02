@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/sethvincent/ebook-convert.git"
+    "url": "http://github.com/sethvincent/node-ebook-convert.git"
   },
   "keywords": [
     "calibre",

@@ -41,9 +41,13 @@ var mobi = convert({
 });
 
 mobi.on('end', function(){
-  console.log('did it!, the mobi exists!')
+  console.log('did it! the mobi exists!')
 });
 
+
+/*
+* create epub file
+*/
 
 var epub = convert({
   source: 'test.html',
@@ -52,5 +56,5 @@ var epub = convert({
 });
 
 epub.on('end', function(){
-  console.log('did it!, the epub exists!')
+  console.log('did it! the epub exists!')
 });
