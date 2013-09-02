@@ -14,7 +14,10 @@ var pdfArguments = defaultArguments.concat([
   ['--margin-left', '50']
 ]);
 
-console.log(pdfArguments)
+
+/*
+* create pdf file
+*/
 
 var pdf = convert({
   source: 'test.html',
@@ -26,6 +29,10 @@ pdf.on('end', function(){
   console.log('did it! the pdf exists!');
 });
 
+
+/*
+* create mobi file
+*/
 
 var mobi = convert({
   source: 'test.html',
