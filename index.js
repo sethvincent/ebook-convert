@@ -16,6 +16,12 @@ function EbookConvert(options){
     }
   }
 
+  var targetType = this.target.split(".").pop();
+  
+  if (targetType === 'pdf'){
+
+  }
+
   var ee = new EventEmitter;
   var convert = spawn('ebook-convert', arguments);
 
@@ -23,8 +29,24 @@ function EbookConvert(options){
     ee.emit('data', data);
   });
 
+  convert.stdout.on('error', function(err){
+    ee.emit('error', err);
+  });
+
+  convert.on('message', function(res){
+    ee.emit('message', res);
+  });
+
+  convert.on('disconnect', function(res){
+    ee.emit('disconnect', res);
+  });
+
+  convert.on('exit', function(res){
+    ee.emit('exit', res);
+  });
+
   convert.on('close', function(code){
-    ee.emit('end', code);
+    ee.emit('close', code);
   });
 
   return ee;
