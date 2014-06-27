@@ -26,7 +26,7 @@ epub.on('end', function(){
 Install `ebook-convert` with npm:
 
 ```
-npm install -g ebook-convert
+npm install ebook-convert
 ```
 
 ## License:
