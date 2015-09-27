@@ -4,11 +4,11 @@
   "description": "node.js wrapper around calibre's ebook-convert command",
   "main": "index.js",
   "scripts": {
-    "test": "test/test.js"
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/sethvincent/node-ebook-convert.git"
+    "url": "http://github.com/sethvincent/ebook-convert.git"
   },
   "keywords": [
     "calibre",
@@ -22,7 +22,6 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "tape": "^2.12.0",
-    "faucet": "0.0.1"
+    "tape": "^2.12.0"
   }
 }
