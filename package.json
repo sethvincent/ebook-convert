@@ -19,8 +19,12 @@
     "hmtl"
   ],
   "author": "seth vincent",
-  "license": "MIT",
-  "dependencies": {},
+  "license": "ISC",
+  "dependencies": {
+    "command-exists": "^1.0.2",
+    "to-flags": "^0.2.0",
+    "xtend": "^4.0.1"
+  },
   "devDependencies": {
     "tape": "^2.12.0"
   }

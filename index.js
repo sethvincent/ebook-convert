@@ -1,41 +1,32 @@
-var spawn = require('child_process').spawn
-var EventEmitter = require('events').EventEmitter
+var assert = require('assert')
+var exec = require('child_process').exec
 
-module.exports = function ebookConvert (options, callback) {
-  var args = [options.source, options.target]
+var exists = require('command-exists')
+var toFlags = require('to-flags')
+var xtend = require('xtend')
 
-  if (options.arguments) {
-    for (var i = 0; i < options.arguments.length; i++) {
-      args = args.concat(options.arguments[i])
-    }
+module.exports = function ebookConvert (args, options, callback) {
+  assert.equal(typeof args, 'object', 'args object is required')
+  assert.equal(typeof args.input, 'string', 'string filepath of input file is required')
+  assert.equal(typeof args.output, 'string', 'string filepath of output file is required')
+
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
   }
 
-  var ee = new EventEmitter()
-  var convert = spawn('ebook-convert', args)
+  var input = args.input
+  var output = args.output
+  delete args.input
+  delete args.output
 
-  convert.stdout.on('data', function (data) {
-    ee.emit('data', data)
+  exists('ebook-convert', function (err, ok) {
+    if (err || !ok) {
+      var msg = 'Error: ebook-convert command must be installed as part of calibre. Find instructions at http://calibre-ebook.com'
+      return callback(new Error(msg))
+    }
+    args = toFlags(args).join(' ')
+    var cmd = 'ebook-convert ' + input + ' ' + output + ' ' + args
+    exec(cmd, options, callback)
   })
-
-  convert.stdout.on('error', function (err) {
-    ee.emit('error', err)
-  })
-
-  convert.on('message', function (res) {
-    ee.emit('message', res)
-  })
-
-  convert.on('disconnect', function (res) {
-    ee.emit('disconnect', res)
-  })
-
-  convert.on('exit', function (res) {
-    ee.emit('exit', res)
-  })
-
-  convert.on('close', function (code) {
-    ee.emit('close', code)
-  })
-
-  return ee
 }

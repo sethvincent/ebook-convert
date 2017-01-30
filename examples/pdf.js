@@ -1,51 +1,32 @@
 var path = require('path')
+var xtend = require('xtend')
 var convert = require('../')
 
-var args = [
-  // ['--cover', 'assets/title_page.jpg'],
-  ['--base-font-size', '12'],
-  ['--authors', 'Seth Vincent'],
-  ['--publisher', 'Super Big Tree'],
-  ['--extra-css', path.join(__dirname, 'pdf.css')],
-  ['--pdf-sans-family', 'Open Sans, Helvetica Neue, Helvetica, sans-serif'],
-  ['--pdf-serif-family', 'Lora, Baskerville, Georgia, serif'],
-  ['--page-breaks-before', '//h:h1'],
-  ['--chapter', '//h:h1'],
-  ['--pdf-page-numbers'],
-  ['--insert-blank-line'],
-  ['--insert-blank-line-size', '1'],
-  ['--line-height', '12'],
-  ['--margin-top', '50'],
-  ['--margin-right', '50'],
-  ['--margin-bottom', '50'],
-  ['--margin-left', '50']
-]
+var options = {
+  input: path.join(__dirname, 'example.html'),
+  output: path.join(__dirname, 'example.pdf'),
+  // cover: 'assets/title_page.jpg',
+  //baseFontSize: 10,
+  authors: '"Seth Vincent"',
+  extraCss: path.join(__dirname, 'pdf.css'),
+  pdfSansFamily: '"Open Sans, Helvetica Neue, Helvetica, sans-serif"',
+  pdfSerifFamily: '"Lora, Baskerville, Georgia, serif"',
+  pdfDefaultFontSize: 12,
+  pageBreaksBefore: '//h:h1',
+  chapter: '//h:h1',
+  pdfPageNumbers: true,
+  insertBlankLine: true,
+  insertBlankLineSize: '1',
+  lineHeight: '12',
+  marginTop: '50',
+  marginRight: '50',
+  marginBottom: '50',
+  marginLeft: '50'
+}
 
 /*
 * create pdf file
 */
-var pdf = convert({
-  source: path.join(__dirname, 'example.html'),
-  target: path.join(__dirname, 'example.pdf'),
-  arguments: args
-})
-
-pdf.on('data', function (data) {
-  console.log('data event', data.toString())
-})
-
-pdf.on('exit', function (res) {
-  console.log('exit event', res)
-})
-
-pdf.on('close', function (res) {
-  console.log('close event', res)
-})
-
-pdf.on('message', function (res) {
-  console.log('message event', res)
-})
-
-pdf.on('error', function (res) {
-  console.log('error event', res)
+convert(options, function (err) {
+  if (err) console.log(err)
 })
