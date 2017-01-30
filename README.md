@@ -5,7 +5,7 @@
 ```js
 var path = require('path')
 var xtend = require('xtend')
-var convert = require('../')
+var convert = require('ebook-convert')
 
 // see more options at https://manual.calibre-ebook.com/generated/en/ebook-convert.html
 var options = {
