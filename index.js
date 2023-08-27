@@ -26,7 +26,7 @@ module.exports = function ebookConvert (args, options, callback) {
       return callback(new Error(msg))
     }
     args = toFlags(args).join(' ')
-    var cmd = 'ebook-convert ' + input + ' ' + output + ' ' + args
+    var cmd = `ebook-convert "${input}" "${output}" ${args}`
     exec(cmd, options, callback)
   })
 }
